@@ -2,10 +2,10 @@
 // use PHPUnit\Framework\TestCase;
     class dataBase// extends TestCase
     {
-        var $host='localhost';
+        var $host='db4free.net';
         var $bd='baseqa';
-        var $usuario='root';
-        var $password='';
+        var $usuario='bran2997';
+        var $password='12345678';
         var $link = 0;
         
 
