@@ -148,7 +148,7 @@ if(!isset($_SESSION['usuario']))
 							$todo = $todo . '<p class="card-description">' . $fila['descripcion'] . '</p>';
 							if ((int)$fila['amigo'] == 0 and (int)$fila['idUsuarioPublicacion'] != $usuarioLogueado)
 							{
-								$todo = $todo . "<a href='../php/annadirAmigo.php?identificadorAmigo=" . $usuarioLogueado . "' style='color:blue;'><i class='fas fa-user-plus'></i></i></a>";//No like
+								$todo = $todo . "<a href='../php/annadirAmigo.php?identificadorAmigo=" . $fila['idUsuarioPublicacion'] . "' style='color:blue;'><i class='fas fa-user-plus'></i></i></a>";//No like
 							}
 
 							$script = "select * from likes where idPublicacion=" . (int)$fila['idPublicacion'] . " and idUsuarioLike=" . (int)$_SESSION['id'] . ";";

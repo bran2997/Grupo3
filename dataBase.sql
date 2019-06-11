@@ -1,5 +1,3 @@
-use sys;
-drop database baseQA;
 create database baseQA;
 use baseQA;
 
@@ -13,8 +11,7 @@ create table usuario(
 );
 Alter table usuario add column imagen varchar(512) after contrasennaUsuario;
  
--- select * from usuario;
--- delete from usuario where idUsuario = 1 or idUsuario=2;
+
 create table amigos
 (
 	idAmigos int primary key auto_increment,
@@ -78,17 +75,3 @@ create table comentarioComentario
     foreign key idUsuarioComentario (idUsuarioComentario) references usuario(idUsuario)
 );
 Alter table comentarioComentario add column descripcionComentario varchar(1024) after idComentario;
--- insert into comentarioComentario (idUsuarioComentario,idComentario, descripcionComentario) values (1,4,'ComentarioPrueba');
--- select * from publicacion;
--- delete from likeComentario where idComentario = 0 or idComentario=4;
--- insert into likeComentario (idComentario,idUsuarioLike) values ();
-
-/* insert into comentarios (idUsuarioComentario, idPublicacionComentario,descripcion)
- values (1,2,'Probando un comentario x3'); 
-select * from likeComentario;
-
-
-insert into usuario (nombreUsuario, apellidoUsuario, direccionUsuario, contrasennaUsuario, fechaNacimiento)
- values ('Jose','Jimenez','jimenezjm28j','123','1996-11-28');
-insert into usuario (nombreUsuario, apellidoUsuario, direccionUsuario, contrasennaUsuario, fechaNacimiento)
- values ('Luis','Aguilar','felipe','123','1996-11-28');*/

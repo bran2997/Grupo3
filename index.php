@@ -86,11 +86,13 @@ if(isset($_SESSION['usuario']))
 					{
 						if ($objeto['contrasennaUsuario'] == $contrasenna)
 						{
-							$_SESSION['usuario'] = $objeto['nombreUsuario'];
+							$_SESSION['usuario'] = $objeto['direccionUsuario'];
 							$_SESSION['id'] = $objeto['idUsuario'];
 							$_SESSION['imagen'] = $objeto['imagen'];
 							$_SESSION['nombre'] = $objeto['nombreUsuario'];
 							$_SESSION['apellido'] = $objeto['apellidoUsuario'];
+							$_SESSION['fechaNacimiento'] = $objeto['fechaNacimiento'];
+
 							// echo $objeto['nombreUsuario'] . "," . $objeto['apellidoUsuario'] . "," .  $objeto['direccionUsuario'] . "," .  $objeto['contrasennaUsuario'];
 							header('Location: inicio/');
 						}
