@@ -6,20 +6,21 @@
         var $bd='baseqa';
         var $usuario='bran2997';
         var $password='12345678';
+        var $port = '3306';
         var $link = 0;
         
 
         
         public function consultar($sql)
         {
-            $this->link = new mysqli($this->host, $this->usuario, $this->password, $this->bd);
+            $this->link = new mysqli($this->host, $this->usuario, $this->password, $this->bd, $this->port);
             $result = $this->link->query($sql);
             return $result;
         }
         
         public function insertar($sql)
         {
-            $this->link = new mysqli($this->host, $this->usuario, $this->password, $this->bd);
+            $this->link = new mysqli($this->host, $this->usuario, $this->password, $this->bd, $this->port);
             return $this->link->query($sql);
         }
         
