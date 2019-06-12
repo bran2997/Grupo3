@@ -49,14 +49,6 @@ if(!isset($_SESSION['usuario']))
 				<?php
 					// echo $_SESSION['imagen'];
 					echo '<img src="' . $_SESSION['imagen'] . '" alt="" width="8%">';
-					echo '<br>';
-					echo '<label>'.$_SESSION['nombre'].'</label>';
-					echo '<br>';
-					echo '<label>'.$_SESSION['apellido'].'</label>';
-					echo '<br>';
-					echo '<label>'.$_SESSION['id'].'</label>';
-					echo '<br>';
-					echo '<label>'.$_SESSION['fechaNacimiento'].'</label>';
 				?>
 				<!-- Crear Publicacion -->
 				<form action="../php/editarUsuario.php" method="post" class="width:100%;" enctype="multipart/form-data">
@@ -71,7 +63,7 @@ if(!isset($_SESSION['usuario']))
 						<p class="login-box-msg">Apellido</p>
 						<input type="text" name="apellido" value="<?php echo $_SESSION['apellido']; ?>" class="form-control">
 					</div>
-					<div class="form-group row">
+					<div  style="display: none" class="form-group row">
 						
 						<p class="login-box-msg">id</p>
 						<input type="text" name="idUsuario" value="<?php echo $_SESSION['id']; ?>" class="form-control">
@@ -86,7 +78,7 @@ if(!isset($_SESSION['usuario']))
 						<p class="login-box-msg">Fecha Nacimiento</p>
 						<input type="text" name="nacimiento" value="<?php echo $_SESSION['fechaNacimiento']; ?>" class="form-control">
 					</div>
-					<div class="form-group row">
+					<div style="display: none" class="form-group row">
 						
 						<p class="login-box-msg">Usuario viejo</p>
 						<input type="text" name="usuarioViejo" value="<?php echo $_SESSION['usuario']; ?>" class="form-control">

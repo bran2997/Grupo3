@@ -49,7 +49,9 @@ if(!isset($_SESSION['usuario']))
 				<?php
 					// echo $_SESSION['imagen'];
 					echo '<img src="' . $_SESSION['imagen'] . '" alt="" width="8%">';
+					echo '<br/>';
 				?>
+				<input type="submit" name="boton" onClick="document.location.href='../inicio/editarPerfil.php'" value="Editar perfil">
 				<!-- Crear Publicacion -->
 				<form action="../php/crearPublicacion.php" method="post" class="width:100%;" enctype="multipart/form-data">
 					
@@ -120,17 +122,6 @@ if(!isset($_SESSION['usuario']))
 					{
 						if (($anterior != $fila['idUsuario']) or ($anterior==0))
 						{
-
-
-
-							
-							
-								
-							
-
-
-
-
 
 							$todo = $todo . '<div class="my-2 mx-auto p-relative bg-white shadow-1" style="width: 100%; overflow: hidden; border-radius: 1px;">';
 							// $idAnnadir = 4;
