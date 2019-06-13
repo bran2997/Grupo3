@@ -35,8 +35,11 @@
 					{
 						$flag = true;
 					}
-					$objeto = $fila;
-					$flag = False;
+					else
+					{
+						$objeto = $fila;
+						$flag = False;
+					}
 				}
 			}
 			
