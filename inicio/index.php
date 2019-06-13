@@ -12,6 +12,7 @@ if(!isset($_SESSION['usuario']))
 	<head>
 		<meta charset="UTF-8">
 		<title>Añadir Usuario</title>
+		<script type="text/javascript" src="var.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
@@ -52,11 +53,21 @@ if(!isset($_SESSION['usuario']))
 					echo '<br/>';
 				?>
 				<input type="submit" name="boton" onClick="document.location.href='../inicio/editarPerfil.php'" value="Editar perfil">
+				<input type="submit" name="boton" onClick="document.location.href='../inicio/amigos.php'" value="Buscar amigos">
+				
+
+				<br>
+					<br>
+					<input type="text" id="txtbusqueda" placeholder="Buscar por nombre...">
+					<input type="submit" name="boton" onclick="myFunction()" value="Buscar post">
+					<br>
+					<br>
+						
 				<!-- Crear Publicacion -->
 				<form action="../php/crearPublicacion.php" method="post" class="width:100%;" enctype="multipart/form-data">
 					
 					<div class="form-group row">
-						
+					
 						<p class="login-box-msg">Titulo</p>
 						<input type="text" name="titulo" value="" class="form-control" placeholder="Título...">
 					</div>
@@ -93,7 +104,9 @@ if(!isset($_SESSION['usuario']))
 					// echo $usuario . " - " . $contrasenna;
 					$objeto = new dataBase();
 					$usuarioLogueado = (int)$_SESSION['id'];
-					$consulta = "SELECT * FROM publicacion as p inner join amigos as a on a.idAmigo1=p.idUsuario or a.idAmigo2=p.idUsuario inner join usuario as u on p.idUsuario = u.idUsuario where a.idAmigo1=". $usuarioLogueado . " or a.idAmigo2=". $usuarioLogueado ." or p.visibilidad=0  order by p.idPublicacion desc;";
+					$consulta = "SELECT * FROM publicacion as p inner join amigos as a on a.idAmigo1=p.idUsuario or a.idAmigo2=p.idUsuario 
+					inner join usuario as u on p.idUsuario = u.idUsuario where a.idAmigo1=". $usuarioLogueado . " or a.idAmigo2=". $usuarioLogueado ." or p.visibilidad=0  
+					order by p.idPublicacion desc;";
 					
 					$consulta = "  SELECT idPublicacion, idUsuarioPublicacion, titulo,
 					 visibilidad, descripcion, fecha, direccionImagen, idUsuario, nombreUsuario, apellidoUsuario, 1 as amigo
@@ -192,6 +205,6 @@ if(!isset($_SESSION['usuario']))
 			// session_start();
 			
 		?>
-    	<script src="../js/script.js"/>
+    	
 	</body>
 </html>
