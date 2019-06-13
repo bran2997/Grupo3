@@ -1,10 +1,42 @@
 <?php
 session_start();
 // include 'lib/config.php';
+include("../php/dataBase.php");
 
 if(!isset($_SESSION['usuario']))
 {
-  header("Location: ../");
+	if(!isset($_SESSION['userData']))
+	{
+		   header("Location: ../");
+	}
+	else
+	{
+		$userData = $_SESSION['userData'];
+
+		$auth = $userData['oauth_uid'];
+		$objeto = new dataBase();
+		$consulta = "SELECT * FROM usuario where oauth_uid = '$auth'";
+		$result = $objeto->consultar($consulta);
+		$todo = "";
+		$objeto = 0;
+		try
+		{
+			while ($fila = mysqli_fetch_array($result))
+			{
+				$objeto = $fila;
+				$_SESSION['usuario'] = $objeto['direccionUsuario'];
+				$_SESSION['id'] = $objeto['idUsuario'];
+				$_SESSION['imagen'] = $objeto['imagen'];
+				$_SESSION['nombre'] = $objeto['nombreUsuario'];
+				$_SESSION['apellido'] = $objeto['apellidoUsuario'];
+				$_SESSION['fechaNacimiento'] = $objeto['fechaNacimiento'];
+			}
+		}
+		catch (exception $e)
+		{
+			header("Location: ../");
+		}
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -98,7 +130,6 @@ if(!isset($_SESSION['usuario']))
 
 				<?php
 					$todo = '';
-					include("../php/dataBase.php");
 					// $usuario = $_POST['usuario'];
 					// $contrasenna = $_POST['contrasenna'];
 					// echo $usuario . " - " . $contrasenna;
