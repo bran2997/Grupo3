@@ -105,9 +105,9 @@ if(!isset($_SESSION['usuario']))
 					/*SELECT * FROM `usuario` WHERE nombreUsuario like 'br%' or apellidoUsuario like'br%' UNION SELECT * FROM `usuario` WHERE nombreUsuario like '%br%' or apellidoUsuario like'%br%' UNION SELECT * FROM `usuario` WHERE nombreUsuario like '%br' or apellidoUsuario like'%br'*/
 					
 					$consulta = "SELECT usuario.idUsuario, CONCAT(usuario.nombreUsuario, ' ', usuario.apellidoUsuario) 
-					as amigo FROM `usuario` where usuario.idUsuario != '.$usuarioLogueado.' and usuario.idUsuario not in (SELECT amigos.idAmigo2 FROM `amigos` 
-					INNER JOIN usuario on amigos.idAmigo2 = usuario.idUsuario where idAmigo1 = '.$usuarioLogueado.' UNION SELECT amigos.idAmigo1 as amigo 
-					FROM `amigos` INNER JOIN usuario on amigos.idAmigo1 = usuario.idUsuario where idAmigo2 = '.$usuarioLogueado.')";
+					as amigo FROM `usuario` where usuario.idUsuario != $usuarioLogueado and usuario.idUsuario not in (SELECT amigos.idAmigo2 FROM `amigos` 
+					INNER JOIN usuario on amigos.idAmigo2 = usuario.idUsuario where idAmigo1 = $usuarioLogueado UNION SELECT amigos.idAmigo1 as amigo 
+					FROM `amigos` INNER JOIN usuario on amigos.idAmigo1 = usuario.idUsuario where idAmigo2 = $usuarioLogueado)";
 					$result = $objeto->consultar($consulta);					
 					while ($fila = mysqli_fetch_array($result))
 					{
