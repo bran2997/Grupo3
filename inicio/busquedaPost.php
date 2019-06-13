@@ -66,16 +66,21 @@ $busqueda = $_GET['var'];
 					// echo $usuario . " - " . $contrasenna;
 					$objeto = new dataBase();
 					$usuarioLogueado = (int)$_SESSION['id'];
-					$consulta = "SELECT * FROM `publicacion` WHERE descripcion like '$busqueda%' or descripcion like '%$busqueda%' or descripcion like 
+					$consulta = "SELECT  usuario.idUsuario, usuario.nombreUsuario, usuario.apellidoUsuario, publicacion.idPublicacion, 
+					publicacion.idUsuarioPublicacion, publicacion.titulo, publicacion.visibilidad, publicacion.descripcion, 
+					publicacion.fecha, publicacion.direccionImagen FROM `publicacion` inner JOIN usuario on publicacion.idUsuarioPublicacion = usuario.idUsuario
+					 WHERE descripcion like '$busqueda%' or descripcion like '%$busqueda%' or descripcion like 
 					'%$busqueda' or titulo like '$busqueda%' or titulo like '%$busqueda%' or titulo like '%$busqueda' and
 					publicacion.idUsuarioPublicacion in (SELECT amigos.idAmigo2 as amigo FROM `amigos` INNER JOIN usuario on amigos.idAmigo2 = usuario.idUsuario 
 					where idAmigo1 = $usuarioLogueado UNION SELECT amigos.idAmigo1 as amigo FROM `amigos` INNER JOIN usuario on amigos.idAmigo1 = usuario.idUsuario 
 					where idAmigo2 = $usuarioLogueado) 
 					
-					UNION SELECT * FROM `publicacion` WHERE descripcion like '$busqueda%' or descripcion like '%$busqueda%' or descripcion 
+					UNION SELECT usuario.idUsuario, usuario.nombreUsuario, usuario.apellidoUsuario, publicacion.idPublicacion, 
+					publicacion.idUsuarioPublicacion, publicacion.titulo, publicacion.visibilidad, publicacion.descripcion, 
+					publicacion.fecha, publicacion.direccionImagen FROM `publicacion` inner JOIN usuario on publicacion.idUsuarioPublicacion = usuario.idUsuario
+					WHERE descripcion like '$busqueda%' or descripcion like '%$busqueda%' or descripcion 
 					like '%$busqueda' or titulo like '$busqueda%' or titulo like '%$busqueda%' or titulo like '%$busqueda' and publicacion.visibilidad = 0";
 
-					echo '<p>'.$consulta.'</p>';
 					//echo $consulta;
 					$result = $objeto->consultar($consulta);
 					// $todo = "";
@@ -101,11 +106,7 @@ $busqueda = $_GET['var'];
 							$todo = $todo . '<img src="' . $fila['direccionImagen'] . '" alt="' . $fila['titulo'] . '" height="50%" width="50%">';
 
 							$todo = $todo . '<p class="card-description">' . $fila['descripcion'] . '</p>';
-							if ((int)$fila['amigo'] == 0 and (int)$fila['idUsuarioPublicacion'] != $usuarioLogueado)
-							{
-								$todo = $todo . "<a href='../php/annadirAmigo.php?identificadorAmigo=" . $fila['idUsuarioPublicacion'] . "' style='color:blue;'><i class='fas fa-user-plus'></i></i></a>";//No like
-							}
-
+							
 							$script = "select * from likes where idPublicacion=" . (int)$fila['idPublicacion'] . " and idUsuarioLike=" . (int)$_SESSION['id'] . ";";
 							//echo $script . "</br>";
 							$resultado = $objeto->consultar($script);
