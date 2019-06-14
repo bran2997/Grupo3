@@ -1,7 +1,6 @@
 <?php
 session_start();
 // include 'lib/config.php';
-
 if(!isset($_SESSION['usuario']))
 {
   header("Location: ../");
@@ -20,24 +19,20 @@ if(!isset($_SESSION['usuario']))
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
 }
-
 #myTable {
   border-collapse: collapse; /* Collapse borders */
   width: 100%; /* Full-width */
   border: 1px solid #ddd; /* Add a grey border */
   font-size: 18px; /* Increase font-size */
 }
-
 #myTable th, #myTable td {
   text-align: left; /* Left-align text */
   padding: 12px; /* Add padding */
 }
-
 #myTable tr {
   /* Add a bottom border to all table rows */
   border-bottom: 1px solid #ddd; 
 }
-
 #myTable tr.header, #myTable tr:hover {
   /* Add a grey background color to the table header and on hover */
   background-color: #f1f1f1;
@@ -101,7 +96,6 @@ if(!isset($_SESSION['usuario']))
 					// echo $usuario . " - " . $contrasenna;
 					$objeto = new dataBase();
 					$usuarioLogueado = (int)$_SESSION['id'];
-
 					/*SELECT * FROM `usuario` WHERE nombreUsuario like 'br%' or apellidoUsuario like'br%' UNION SELECT * FROM `usuario` WHERE nombreUsuario like '%br%' or apellidoUsuario like'%br%' UNION SELECT * FROM `usuario` WHERE nombreUsuario like '%br' or apellidoUsuario like'%br'*/
 					
 					$consulta = "SELECT usuario.idUsuario, CONCAT(usuario.nombreUsuario, ' ', usuario.apellidoUsuario) 
@@ -157,10 +151,9 @@ if(!isset($_SESSION['usuario']))
 				filter = input.value.toUpperCase();
 				table = document.getElementById("myTable");
 				tr = table.getElementsByTagName("tr");
-
 				// Loop through all table rows, and hide those who don't match the search query
 				for (i = 0; i < tr.length; i++) {
-					td = tr[i].getElementsByTagName("td")[0];
+					td = tr[i].getElementsByTagName("td")[1];
 					if (td) {
 					txtValue = td.textContent || td.innerText;
 					if (txtValue.toUpperCase().indexOf(filter) > -1) {
