@@ -292,9 +292,88 @@
 		public function testNoAuthFB()
 		{
 			$valor = $this->authFB("2811622632197524");
-            $this->assertTrue(true);
+            $this->assertFalse(false);
             return $valor;
 		}
+
+		public function actualizarUsuario($nombre,$apellido,$nacimiento,$usuario,$contrasenna,$contrasenna2, $id)
+		{
+				$datos = ["imagen","jpg"];//explode(".",$_FILES['imagen']['name']);//[0]-> name, [1]->extension
+
+				$nombreA = $datos[0] . time() . "." . $datos[1];
+				$nombreA = '../images/profile_Pictures/' . $nombreA;
+
+			if(($contrasenna == $contrasenna2) and ($nombre!="" and $apellido!="" and $usuario!="" and $contrasenna!="" and $nacimiento!=""))
+				{
+					$objeto = new dataBase();
+					$obje = $objeto;
+					$consulta = "update usuario  set 
+										nombreUsuario = '$nombre', 
+										apellidoUsuario = '$apellido',
+										direccionUsuario = '$usuario.',
+										contrasennaUsuario = '$contrasenna',
+										fechaNacimiento = '$nacimiento',
+										imagen = '$nombreA' 
+										where idUsuario = $id.";
+
+								$resultado = $obje->insertar($consulta);
+								if($resultado)
+								{
+									return true;
+								}
+								else
+								{
+									return false;
+								}	
+				}
+				else
+				{
+					return false;
+				}
+		}
+
+		public function testActualizar()
+		{
+			$valor = $this->actualizarUsuario("Bran", "Rojas","29-06-1997","bran29", "123", "123", "1");
+			$this->assertTrue(true);
+			return $valor;
+		}
+
+		public function testNoActualizar()
+		{
+			$valor = $this->actualizarUsuario("Bran", "Rojas","29-06-1997","bran29", "123", "12", "1");
+			$this->assertFalse(false);
+			return $valor;
+		}
+
+		public function testNoActualizar2()
+		{
+			$valor = $this->actualizarUsuario("Bran", "Rojas","29-06-1997","bran29", "123", "12", "3");
+			$this->assertFalse(false);
+			return $valor;
+		}
+
+		public function testNoActualizar3()
+		{
+			$valor = $this->actualizarUsuario("Bran", "Rojas","29-06-1997","bran2997", "123", "13", "1");
+			$this->assertFalse(false);
+			return $valor;
+		}
+
+		public function testNoActualizar4()
+		{
+			$valor = $this->actualizarUsuario("", "Rojas","29-06-1997","bran2997", "123", "123", "1");
+			$this->assertFalse(false);
+			return $valor;
+		}
+
+		public function testNoActualizar5()
+		{
+			$valor = $this->actualizarUsuario("Bran", "","29-06-1997","bran290697", "123", "123", "1");
+			$this->assertFalse(false);
+			return $valor;
+		}
+
 
 
      public function meGustaComentario($usuario,$comentario){     
